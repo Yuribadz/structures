@@ -1,17 +1,23 @@
-APP      = structures
+APP     := structures
 
-OBJDIR   = obj
-SRC_DIR = src
+OBJDIR  := obj
+SRC_DIR := src
+INC_DIR := inc
+QLIBC_INCLUDES := /lib/qlibc/include/
+QLIBC_LIBRARY_PATH := -Llib/qlibc/lib
+QLIBC_LIBS := -lqlibc -lqlibcext
+PTHREAD_LIBS = -lpthread
 SRCS    := $(shell find $(SRC_DIR) -name '*.c')
 SRCDIRS := $(shell find $(SRC_DIR) -name '*.c' -exec dirname {} \; | uniq)
 OBJS    := $(patsubst %.c,$(OBJDIR)/%.o,$(SRCS))
 DEPS    := $(patsubst %.c,$(OBJDIR)/%.d,$(SRCS))
 
-DEBUG    = -g
-INCLUDES = -I./inc
-CFLAGS   = $(DEBUG) -Wall -pedantic $(INCLUDES) -c
-LDFLAGS  =
-LIBS     =
+DEBUG    := -g
+
+INCLUDES := -I./$(INC_DIR) -I./$(QLIBC_INCLUDES)
+CFLAGS   := $(DEBUG) -Wall -pedantic $(INCLUDES) -c
+LDFLAGS  := $(QLIBC_LIBRARY_PATH)
+LIBS     := $(QLIBC_LIBS) $(PTHREAD_LIBS)
 
 DEPENDS  = -MT $@ -MD -MP -MF $(subst .o,.d,$@)
 
