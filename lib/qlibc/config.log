@@ -1009,6 +1009,7 @@ config.status:817: creating src/Makefile
 config.status:817: creating tests/Makefile
 config.status:817: creating examples/Makefile
 config.status:817: creating config.h
+config.status:998: config.h is unchanged
 
 ## ---------------- ##
 ## Cache variables. ##

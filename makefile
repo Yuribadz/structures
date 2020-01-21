@@ -3,7 +3,7 @@ APP     := structures
 OBJDIR  := obj
 SRC_DIR := src
 INC_DIR := inc
-QLIBC_INCLUDES := /lib/qlibc/include/
+QLIBC_INCLUDES := lib/qlibc/include/
 QLIBC_LIBRARY_PATH := -Llib/qlibc/lib
 QLIBC_LIBS := -lqlibc -lqlibcext
 PTHREAD_LIBS = -lpthread
@@ -15,8 +15,8 @@ DEPS    := $(patsubst %.c,$(OBJDIR)/%.d,$(SRCS))
 DEBUG    := -g
 
 INCLUDES := -I./$(INC_DIR) -I./$(QLIBC_INCLUDES)
-CFLAGS   := $(DEBUG) -Wall -pedantic $(INCLUDES) -c
-LDFLAGS  := $(QLIBC_LIBRARY_PATH)
+CFLAGS   := $(DEBUG) -Wall -Wpedantic $(INCLUDES) -c
+LDFLAGS  := -Wl,-rpath,lib/qlibc/lib $(QLIBC_LIBRARY_PATH)
 LIBS     := $(QLIBC_LIBS) $(PTHREAD_LIBS)
 
 DEPENDS  = -MT $@ -MD -MP -MF $(subst .o,.d,$@)

@@ -5,7 +5,7 @@ int is_readWritable(const char *filename)
 {
         FILE *fp = fopen(filename, "r+");
         if(fp != NULL){
-                fclose(filename);
+                fclose(fp);
                 return 1;
         } else {
                 return 0;

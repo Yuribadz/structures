@@ -31,7 +31,6 @@
     :compile:
       :*:
         - -g
-        - -std=c99
         - -Wall
         - -Wextra
         - -Wstrict-prototypes
@@ -49,14 +48,18 @@
         - -ffunction-sections
     :link:
       :*:
-        - -Wl,--gc-sections
-
+        - -Wl
+        - -Llib/qlibc/lib
+        - -lqlibc
+        - -lqlibcext
+        - -lpthread
 :extension:
   :executable: .out
 
 :paths:
   :include:
     - inc/**
+    - lib/qlibc/include/**
   :test:
     - +:test/**
     - -:test/support
@@ -115,6 +118,14 @@
       - --errors-for-leak-kinds=all
       - --error-exitcode=10
       - ${1}
+  :test_linker:
+    :executable : gcc
+    :name: 'gcc linker'
+    :arguments:
+      - ${1}
+      - -o ${2}
+      - -Llib/qlibc/lib
+      - -Wl,-rpath,lib/qlibc/lib
   :gcov_linker:
     :executable: gcc
     :arguments:
