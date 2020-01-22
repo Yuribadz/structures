@@ -25,6 +25,9 @@ void test_queue_remove(void)
         queue_t* qu = create_queue();
         TEST_ASSERT_EQUAL(qu->next, qu->next->next);
         enqueue((item_t){.i = 5}, qu);
+        enqueue((item_t){.i = 5}, qu);
+        enqueue((item_t){.i = 5}, qu);
+        dequeue(qu);
         qu = remove_queue(qu);
         clean_free_nodes();
         TEST_ASSERT_EQUAL_PTR(NULL, qu);
@@ -37,6 +40,7 @@ void test_queue_add_remove(void)
         TEST_ASSERT_EQUAL(qu->next, qu->next->next);
         enqueue((item_t){.i = 5}, qu);
         TEST_ASSERT_EQUAL(5, dequeue(qu).i);
+        enqueue((item_t){.i = 5}, qu);
         qu = remove_queue(qu);
         clean_free_nodes();
         TEST_ASSERT_EQUAL_PTR(NULL, qu);

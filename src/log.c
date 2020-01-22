@@ -2,7 +2,7 @@
 #include <stdio.h>
 int create_logger(void)
 {
-        qlog_t *logger = qlog("structures-%Y%m%d.log", 0644, 86400, false);
+        logger = qlog("structures-%Y%m%d.log", 0644, 86400, false);
         if(logger == NULL)
                 return -1;
         return 1;
