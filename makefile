@@ -3,8 +3,13 @@ APP     := structures
 OBJDIR  := obj
 SRC_DIR := src
 INC_DIR := inc
+YAJL_INCLUDES := lib/yajl/include/
+YAJL_LIBRARY_PATH := -Llib/yajl/lib/
+YAJL_RPATH = "-Wl,-rpath,lib/yajl/lib"
+YAJL_LIBS := -lyajl
 QLIBC_INCLUDES := lib/qlibc/include/
 QLIBC_LIBRARY_PATH := -Llib/qlibc/lib
+QLIBC_RPATH = "-Wl,-rpath,lib/qlibc/lib"
 QLIBC_LIBS := -lqlibc -lqlibcext
 PTHREAD_LIBS = -lpthread
 SRCS    := $(shell find $(SRC_DIR) -name '*.c')
@@ -14,10 +19,10 @@ DEPS    := $(patsubst %.c,$(OBJDIR)/%.d,$(SRCS))
 
 DEBUG    := -g
 
-INCLUDES := -I./$(INC_DIR) -I./$(QLIBC_INCLUDES)
+INCLUDES := -I./$(INC_DIR) -I./$(QLIBC_INCLUDES) -I./$(YAJL_INCLUDES)
 CFLAGS   := $(DEBUG) -Wall -Wpedantic $(INCLUDES) -c
-LDFLAGS  := -Wl,-rpath,lib/qlibc/lib $(QLIBC_LIBRARY_PATH)
-LIBS     := $(QLIBC_LIBS) $(PTHREAD_LIBS)
+LDFLAGS  := $(QLIBC_RPATH) $(QLIBC_LIBRARY_PATH) $(YAJL_RPATH) $(YAJL_LIBRARY_PATH)
+LIBS     := $(QLIBC_LIBS) $(YAJL_LIBS) $(PTHREAD_LIBS)
 
 DEPENDS  = -MT $@ -MD -MP -MF $(subst .o,.d,$@)
 

@@ -53,6 +53,9 @@
       - -lqlibc
       - -lqlibcext
       - -lpthread
+      - -Wl
+      - -Llib/yajl/lib/
+      - -lyajl
 :extension:
   :executable: .out
 
@@ -60,6 +63,7 @@
   :include:
     - inc/**
     - lib/qlibc/include/**
+    - lib/yajl/include/**
   :test:
     - +:test/**
     - -:test/support
