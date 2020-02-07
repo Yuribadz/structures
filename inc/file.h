@@ -10,7 +10,7 @@ int is_readWritable(const char *filename);
 
 size_t file_size(FILE *fp);
 
-unsigned char *get_content(const char *filename);
+unsigned char* get_content(const char *filename);
 
 yajl_val get_json_root(const char *filename);
 #endif // FILE_H

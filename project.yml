@@ -48,14 +48,6 @@
         - -ffunction-sections
   :link:
     :*:
-      - -Wl
-      - -Llib/qlibc/lib
-      - -lqlibc
-      - -lqlibcext
-      - -lpthread
-      - -Wl
-      - -Llib/yajl/lib/
-      - -lyajl
 :extension:
   :executable: .out
 
@@ -130,6 +122,12 @@
       - -o ${2}
       - -Llib/qlibc/lib
       - -Wl,-rpath,lib/qlibc/lib
+      - -Llib/yajl/lib/
+      - -Wl,-rpath,lib/yajl/lib
+      - -lqlibc
+      - -lqlibcext
+      - -lyajl
+      - -lpthread
   :gcov_linker:
     :executable: gcc
     :arguments:
