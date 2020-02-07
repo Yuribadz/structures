@@ -18,7 +18,7 @@ typedef struct tr_n_t {
 
 tree_node_t* create_tree(void);
 
-tree_node_t* get_node(void);
+tree_node_t* get_t_node(void);
 
 object_t* find(tree_node_t *tree, key_t query_key);
 

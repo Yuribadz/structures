@@ -2,14 +2,14 @@
 
 tree_node_t* create_tree(void) {
     tree_node_t *tmp_node;
-    tmp_node = get_node();
+    tmp_node = get_t_node();
     tmp_node->left = NULL;
     tmp_node->right = NULL;
     tmp_node->color = black;
     return tmp_node;
 }
 
-tree_node_t* get_node(void) {
+tree_node_t* get_t_node(void) {
     tree_node_t *tmp = malloc(sizeof(tree_node_t));
     return tmp;
 }
@@ -133,12 +133,12 @@ void insert_rebalance(tree_node_t *current, tree_node_t *next_node,
 static void _insert(tree_node_t *current, key_t new_key, object_t *new_object) {
     tree_node_t *old_leaf;
     tree_node_t *new_leaf;
-    old_leaf = get_node();
+    old_leaf = get_t_node();
     old_leaf->left = current->left;
     old_leaf->key = current->key;
     old_leaf->right = NULL;
     old_leaf->color = red;
-    new_leaf = get_node();
+    new_leaf = get_t_node();
     new_leaf = new_leaf->left = (tree_node_t*) new_object;
     new_leaf->key = new_key;
     new_leaf->right = NULL;

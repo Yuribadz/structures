@@ -23,13 +23,7 @@ typedef struct queue {
 
 queue_t *free_list;
 
-static queue_t* get_node(void);
-
-static void return_node(queue_t *node);
-
 queue_t* create_queue(void);
-
-static queue_t* get_node(void);
 
 int queue_empty(queue_t *qu);
 
